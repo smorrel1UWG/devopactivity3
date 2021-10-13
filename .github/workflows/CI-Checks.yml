@@ -1,38 +1,29 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI-Checks
-
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the release branch
   push:
     branches: [ development ]
   pull_request:
-    branches: [development, release]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
+    branches: [ development, release ]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   test:
     # The type of runner that the job will run on
     runs-on: windows-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name : Step 1 - Check ot branch from GitHub
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Step 1 - Check out branch from Github
       uses: actions/checkout@v2
-    - name: Step 2 - set up JDK
+    - name: Step 2 - Set up JDK
       uses: actions/setup-java@v2
-      with:
+      with: 
         java-version: 16
         distribution: 'adopt'
     - name: Step 3 - Test project(s) with Maven
       run: |
-        echo Testing Project 1
-        cd code/CodeCoverage_sample
-        mvn --batch-mode --update-snapshots verify
-        cd../..
+       echo Testing Project 1
+       cd code/CodeCoverage_Sample
+       mvn --batch-mode --update-snapshots verify
+       cd ../..
